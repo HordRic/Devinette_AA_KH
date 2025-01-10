@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1736332908 source:c:\code\c\jeudevinettes\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<stdbool.h>
+	<time.h>
+	"fonctionJeu.h"
+	"fonctionSeq.h"
+
+1732705464 source:c:\code\c\jeudevinettes\mesfonctions.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<locale.h>
+	<string.h>
+	<time.h>
+	"mesFonctions.h"
+
+1732705325 c:\code\c\jeudevinettes\mesfonctions.h
+
+1736332972 c:\code\c\jeudevinettes\fonctionjeu.h
+
+1736332934 c:\code\c\jeudevinettes\fonctionseq.h
+	<stdio.h>
+	<stdbool.h>
+
+1736333416 source:c:\code\c\jeudevinettes\fonctionseq.c
+	<stdio.h>
+	<stdbool.h>
+	<locale.h>
+	"fonctionSeq.h"
+
+1736338113 source:c:\code\c\jeudevinettes\fonctionjeu.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<locale.h>
+	<string.h>
+	<time.h>
+	"fonctionJeu.h"
+
