@@ -40,13 +40,12 @@
 	<time.h>
 	"fonctionJeu.h"
 
-1739063018 source:f:\jeudevinettes\fonctionjeu.c
+1739065341 source:f:\jeudevinettes\fonctionjeu.c
 	<stdio.h>
 	<stdlib.h>
-	<stdbool.h>
-	<locale.h>
-	<string.h>
 	<time.h>
+	<stdbool.h>
+	<string.h>
 	"fonctionJeu.h"
 	"fonctionSeq.h"
 
