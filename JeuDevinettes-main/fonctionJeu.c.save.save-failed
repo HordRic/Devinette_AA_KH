@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <locale.h>
+#include <string.h>
+#include <time.h>
+#include "fonctionJeu.h"
+
+void afficheRegles(){
+
+    printf("R\350gles : \n");
+    printf("\tAu début du jeu, vous devez choisir un intervalle. \n");
+    printf("\tUn nombre appartenant \224 cet intervalle sera alors g\351n_351r\351.\n");
+    printf("\tVotre Objectif sera de trouver ce nombre en faisant le \n\tmoins de tentatives possibles.\n\n\n");
+
+}
+
+
+// Prends en paramètre un intervalle et retourne un nombre aléatoirement
+//généré et appartenant à cet intervalle
+int getRandomInt(int bornInf, int bornSup){
+    int randomInt;
+    srand(time(NULL));
+    randomInt = (rand()%bornSup + bornInf);
+    printf("Nombre Random = %d\n",randomInt);
+    return randomInt;
+}
+
+//Menu qui affiche les différents intervalle par défaut
+void proposeIntervalle(){
+    printf("- Intervalle par d\351faut : \n");
+    printf("\t1.Facile   : Entre 0 et 20\n");
+    printf("\t2.Normale  : Entre 0 et 100\n");
+    printf("\t3.Difficile: Entre 0 et 200\n");
+}
+
+//Procédure qui affiche un message d'orientation pour aider l'utilisateur
+//à trouver le nombre généré par la machine
+void messageOrientation(int nbreLu, int nbreRandom){
+    if (nbreLu < nbreRandom){
+        printf("- %d est Plus Petit que le Nombre Secret\n",nbreLu);
+    }
+    else if(nbreLu > nbreRandom){
+        printf("- %d est Plus Grand que le Nombre Secret\n",nbreLu);
+    }
+    else{
+        printf("Entr\351e Invalide ou Non prise en charge\n");
+    }
+}
+
+
+//Procédure qui affiche un "grade" au joueur en fonction du nombre
+//de tentatives effectuées
+void messageFelicitation(int nbreDeTentatives){
+    printf("F\351licitations, Vous avez trouv\351 le Nombre Secret apr\350s %d tentatives\n",nbreDeTentatives);
+    if (nbreDeTentatives >= 1 && nbreDeTentatives <= 3){
+        printf("Vous \352tes un Super Voyant\n");
+    }
+    else if (nbreDeTentatives >= 4 && nbreDeTentatives <= 6){
+        printf("Vous \352tes un Sage Voyant\n");
+    }
+    else if(nbreDeTentatives >= 7 && nbreDeTentatives <= 9){
+        printf("Vous \352tes un Apprenti Voyant\n");
+    } else {
+        printf("Vous \352tes un Voyant Pusillanime\n");
+    }
+}
+
+//Cette fonction contiendra tout le jeu propement dit avec les appels
+//des différentes fonctions définies plus haut
+void lancerJeu(){
+    setlocale(LC_CTYPE,"");//pour l'encodage en UTF-8
+    int choix,cpt = 0,nbreLu,nbreRandom;
+    char pseudo[100];
+    bool pseudoExiste;
+    FILE* file = fopen("score.txt","a");
+    fclose(file);
+
+    afficheRegles();
+    proposeIntervalle();
+    printf("Votre choix : ");
+    if()
+    while (choix<0 || choix>3)
+    {
+        printf("Entr\351e Invalide - R\351essayer : "); //Controle de choix
+        scanf("%d",&choix);
+    }
+
+    //En fonction du choix, on envoie un intervalle différent à la fonction getRandomInt
+    switch (choix){
+    case 1:
+        nbreRandom = getRandomInt(0,50);
+        break;
+    case 2:
+        nbreRandom = getRandomInt(0,100);
+        break;
+    case 3:
+        nbreRandom = getRandomInt(0,200);
+        break;
+    }
+    printf("À vous de jouer : ");
+    scanf("%d",&nbreLu);
+    while (nbreLu != nbreRandom){
+        messageOrientation(nbreLu, nbreRandom);
+        scanf("%d",&nbreLu);
+        cpt++;
+    }
+    messageFelicitation(cpt);
+    printf("Entrez un pseudo : ");
+    scanf("%s",pseudo);
+    pseudoExiste = verifiePseudo(pseudo,file);
+    if (pseudoExiste) {
+        printf("Ce pseudo est déjà enregistré dans score.txt");
+    }
+    else {
+        archivePseudo(pseudo,file);
+    }
+    printf("Fin du Programme....");
+
+}
